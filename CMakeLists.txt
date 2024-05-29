@@ -6,10 +6,15 @@ set(CMAKE_CXX_STANDARD 23)
 add_executable(cmake_demo main.cpp)
 
 ## Compilation flags
-target_compile_options(cmake_demo PRIVATE
+target_compile_options(cmake_demo PRIVATE # (PRIVATE, PUBLIC, INTERFACE)
     -Wall -Wextra -pedantic
     $<$<CONFIG:DEBUG>:-g>
     $<$<CONFIG:RELEASE>:-O3>
     $<$<CONFIG:RELWITHDEBINFO>:-O2 -g>
     $<$<CONFIG:MINSIZEREL>:-Os>
 )
+
+# Similar to target_compile_options but default is PUBLIC
+add_compile_definitions(FLAG_MACRO)
+add_compile_definitions(VALUE_MACRO=123)
+add_compile_definitions(STRING_MACRO="123")
