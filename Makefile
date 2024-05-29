@@ -15,3 +15,7 @@ run-debug:
 
 run-release:
 	@./cmake-build-release/cmake_demo
+
+install-boost:
+	brew install boost
+	@# sudo apt install libboost-all-dev
