@@ -1,15 +1,14 @@
 .PHONY: *
 
-create-debug:
-	# "Ninja"
-	@cd ./cmake-build-debug && cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Debug ..
-
-create-release:
-	@cd ./cmake-build-release && cmake -DCMAKE_BUILD_TYPE=Release ..
+run: build-debug run-debug
 
 build-debug:
+	@cd ./cmake-build-debug && cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Debug ..
 	@cd ./cmake-build-debug && make
-	@# Or cd ./cmake-build-debug && cmake --build .
+
+build-release:
+	@cd ./cmake-build-release && cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release ..
+	@cd ./cmake-build-release && make
 
 run-debug:
 	@./cmake-build-debug/cmake_demo
