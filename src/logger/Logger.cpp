@@ -27,11 +27,10 @@ void Logger::configNewOuputStreams() {
     this->logFile = ofstream(path.c_str());
     auto* originalCoutBuffer = cout.rdbuf();
 
-    this->dualBuffer = new DualStreamBuffer(originalCoutBuffer, logFile.rdbuf());
-    cout.rdbuf(dualBuffer);
+    this->dualBuffer = std::make_unique<DualStreamBuffer>(originalCoutBuffer, logFile.rdbuf());
+    cout.rdbuf(dualBuffer.get());
 }
 
 void Logger::close() {
     logFile.close();
-    delete dualBuffer;
 }

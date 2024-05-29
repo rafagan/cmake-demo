@@ -2,12 +2,13 @@
 #define LOGGER_H
 
 #include <fstream>
+#include <memory>
 #include "DualStreamBuffer.h"
 
 class Logger {
 private:
     std::ofstream logFile;
-    DualStreamBuffer* dualBuffer = nullptr;
+    std::unique_ptr<DualStreamBuffer> dualBuffer;
 public:
     static void printFlagMacro();
     static void printValueMacro();
